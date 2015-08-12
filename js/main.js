@@ -125,9 +125,9 @@ $(document).on('ready', function() {
   // console.log(gameLibrary);
 });
 
-// add games to existing game library or make a newlibrary
-// can delete games and libraries
 // reset form
 // hide form
+// no duplicate form
+// no duplicate anything
 // delete games
 // delete libraries

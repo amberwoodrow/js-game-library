@@ -1,0 +1,159 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', '-g', 'htmlhint' ]
+2 info using npm@2.11.2
+3 info using node@v0.12.6
+4 verbose install initial load of /usr/local/lib/package.json
+5 verbose readDependencies loading dependencies from /usr/local/lib/package.json
+6 silly cache add args [ 'htmlhint', null ]
+7 verbose cache add spec htmlhint
+8 silly cache add parsed spec { raw: 'htmlhint',
+8 silly cache add   scope: null,
+8 silly cache add   name: 'htmlhint',
+8 silly cache add   rawSpec: '',
+8 silly cache add   spec: '*',
+8 silly cache add   type: 'range' }
+9 silly addNamed htmlhint@*
+10 verbose addNamed "*" is a valid semver range for htmlhint
+11 silly addNameRange { name: 'htmlhint', range: '*', hasData: false }
+12 silly mapToRegistry name htmlhint
+13 silly mapToRegistry using default registry
+14 silly mapToRegistry registry https://registry.npmjs.org/
+15 silly mapToRegistry uri https://registry.npmjs.org/htmlhint
+16 verbose addNameRange registry:https://registry.npmjs.org/htmlhint not in flight; fetching
+17 verbose request uri https://registry.npmjs.org/htmlhint
+18 verbose request no auth needed
+19 info attempt registry request try #1 at 11:58:40 AM
+20 verbose request id ce9803e66b0a8ff7
+21 http request GET https://registry.npmjs.org/htmlhint
+22 http 200 https://registry.npmjs.org/htmlhint
+23 silly get cb [ 200,
+23 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+23 silly get     etag: '"DB89KTQ0MHQKRI4I6N3N5OR0S"',
+23 silly get     'content-type': 'application/json',
+23 silly get     'cache-control': 'max-age=60',
+23 silly get     'content-length': '7645',
+23 silly get     'accept-ranges': 'bytes',
+23 silly get     date: 'Fri, 14 Aug 2015 17:58:42 GMT',
+23 silly get     via: '1.1 varnish',
+23 silly get     age: '0',
+23 silly get     connection: 'keep-alive',
+23 silly get     'x-served-by': 'cache-ord1725-ORD',
+23 silly get     'x-cache': 'HIT',
+23 silly get     'x-cache-hits': '1',
+23 silly get     'x-timer': 'S1439575122.141016,VS0,VE72',
+23 silly get     vary: 'Accept' } ]
+24 verbose get saving htmlhint to /Users/amberwoodrow/.npm/registry.npmjs.org/htmlhint/.cache.json
+25 silly addNameRange number 2 { name: 'htmlhint', range: '*', hasData: true }
+26 silly addNameRange versions [ 'htmlhint', [ '0.9.5', '0.9.6', '0.9.7' ] ]
+27 silly addNamed htmlhint@0.9.7
+28 verbose addNamed "0.9.7" is a plain semver version for htmlhint
+29 silly mapToRegistry name htmlhint
+30 silly mapToRegistry using default registry
+31 silly mapToRegistry registry https://registry.npmjs.org/
+32 silly mapToRegistry uri https://registry.npmjs.org/htmlhint
+33 verbose addRemoteTarball https://registry.npmjs.org/htmlhint/-/htmlhint-0.9.7.tgz not in flight; adding
+34 verbose addRemoteTarball [ 'https://registry.npmjs.org/htmlhint/-/htmlhint-0.9.7.tgz',
+34 verbose addRemoteTarball   '6a9fddb501bf046b0d94dd44b431747309a03cd8' ]
+35 info retry fetch attempt 1 at 11:58:41 AM
+36 info attempt registry request try #1 at 11:58:41 AM
+37 http fetch GET https://registry.npmjs.org/htmlhint/-/htmlhint-0.9.7.tgz
+38 http fetch 200 https://registry.npmjs.org/htmlhint/-/htmlhint-0.9.7.tgz
+39 silly fetchAndShaCheck shasum 6a9fddb501bf046b0d94dd44b431747309a03cd8
+40 verbose addTmpTarball /var/folders/my/9tgk858d3fs2mgrq4d0_d09r0000gn/T/npm-71116-ea983725/registry.npmjs.org/htmlhint/-/htmlhint-0.9.7.tgz not in flight; adding
+41 verbose addTmpTarball already have metadata; skipping unpack for htmlhint@0.9.7
+42 silly cache afterAdd htmlhint@0.9.7
+43 verbose afterAdd /Users/amberwoodrow/.npm/htmlhint/0.9.7/package/package.json not in flight; writing
+44 verbose afterAdd /Users/amberwoodrow/.npm/htmlhint/0.9.7/package/package.json written
+45 silly install resolved [ { name: 'htmlhint',
+45 silly install resolved     version: '0.9.7',
+45 silly install resolved     description: 'A Static Code Analysis Tool for HTML',
+45 silly install resolved     main: './index',
+45 silly install resolved     dependencies:
+45 silly install resolved      { commander: '2.6.0',
+45 silly install resolved        colors: '1.0.3',
+45 silly install resolved        jshint: '2.6.3',
+45 silly install resolved        csslint: '0.10.0' },
+45 silly install resolved     devDependencies:
+45 silly install resolved      { 'expect.js': '0.2.0',
+45 silly install resolved        grunt: '0.4.1',
+45 silly install resolved        'grunt-cli': '0.1.6',
+45 silly install resolved        'grunt-contrib-clean': '0.4.0',
+45 silly install resolved        'grunt-contrib-concat': '0.1.3',
+45 silly install resolved        'grunt-contrib-jshint': '0.3.0',
+45 silly install resolved        'grunt-contrib-uglify': '0.2.0',
+45 silly install resolved        'grunt-contrib-watch': '0.3.1',
+45 silly install resolved        'grunt-exec': '0.4.0',
+45 silly install resolved        'grunt-mocha-hack': '0.1.0',
+45 silly install resolved        'grunt-replace': '0.4.0',
+45 silly install resolved        jscover: '0.2.4',
+45 silly install resolved        mocha: '2.2.0' },
+45 silly install resolved     bin: { htmlhint: './bin/htmlhint' },
+45 silly install resolved     repository: { type: 'git', url: 'git://github.com/yaniswang/HTMLHint.git' },
+45 silly install resolved     bugs: { url: 'https://github.com/yaniswang/HTMLHint/issues' },
+45 silly install resolved     keywords: [ 'html', 'hint', 'Analysis', 'Javascript' ],
+45 silly install resolved     author: { name: 'Yanis Wang' },
+45 silly install resolved     license: 'MIT',
+45 silly install resolved     gitHead: '5f9fa16b839ff4a754fad732705cb8733def5c8e',
+45 silly install resolved     homepage: 'https://github.com/yaniswang/HTMLHint',
+45 silly install resolved     _id: 'htmlhint@0.9.7',
+45 silly install resolved     scripts: {},
+45 silly install resolved     _shasum: '6a9fddb501bf046b0d94dd44b431747309a03cd8',
+45 silly install resolved     _from: 'htmlhint@*',
+45 silly install resolved     _npmVersion: '2.5.1',
+45 silly install resolved     _nodeVersion: '0.12.0',
+45 silly install resolved     _npmUser: { name: 'yaniswang', email: 'yanis.wang@gmail.com' },
+45 silly install resolved     maintainers: [ [Object] ],
+45 silly install resolved     dist:
+45 silly install resolved      { shasum: '6a9fddb501bf046b0d94dd44b431747309a03cd8',
+45 silly install resolved        tarball: 'http://registry.npmjs.org/htmlhint/-/htmlhint-0.9.7.tgz' },
+45 silly install resolved     directories: {},
+45 silly install resolved     _resolved: 'https://registry.npmjs.org/htmlhint/-/htmlhint-0.9.7.tgz' } ]
+46 info install htmlhint@0.9.7 into /usr/local/lib
+47 info installOne htmlhint@0.9.7
+48 verbose installOne of htmlhint to /usr/local/lib not in flight; installing
+49 verbose lock using /Users/amberwoodrow/.npm/_locks/htmlhint-b62e99a44b59d583.lock for /usr/local/lib/node_modules/htmlhint
+50 silly install write writing htmlhint 0.9.7 to /usr/local/lib/node_modules/htmlhint
+51 verbose unbuild lib/node_modules/htmlhint
+52 silly gentlyRm /usr/local/lib/node_modules/htmlhint is being purged from base /usr/local
+53 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/htmlhint
+54 verbose tar unpack /Users/amberwoodrow/.npm/htmlhint/0.9.7/package.tgz
+55 verbose tar unpacking to /usr/local/lib/node_modules/htmlhint
+56 silly gentlyRm /usr/local/lib/node_modules/htmlhint is being purged
+57 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/htmlhint
+58 silly gunzTarPerm modes [ '755', '644' ]
+59 error tar.unpack untar error /Users/amberwoodrow/.npm/htmlhint/0.9.7/package.tgz
+60 verbose unlock done using /Users/amberwoodrow/.npm/_locks/htmlhint-b62e99a44b59d583.lock for /usr/local/lib/node_modules/htmlhint
+61 verbose fstream_path /usr/local/lib/node_modules/htmlhint
+62 verbose fstream_type Directory
+63 verbose fstream_class DirWriter
+64 verbose stack Error: EACCES, mkdir '/usr/local/lib/node_modules/htmlhint'
+64 verbose stack     at Error (native)
+65 verbose fstream_stack /usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:35:25
+65 verbose fstream_stack /usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:47:53
+65 verbose fstream_stack FSReqWrap.oncomplete (fs.js:95:15)
+66 verbose cwd /Users/amberwoodrow/gschool/week6/8_11_2015/js-game-library
+67 error Darwin 14.4.0
+68 error argv "node" "/usr/local/bin/npm" "install" "-g" "htmlhint"
+69 error node v0.12.6
+70 error npm  v2.11.2
+71 error path /usr/local/lib/node_modules/htmlhint
+72 error code EACCES
+73 error errno -13
+74 error Error: EACCES, mkdir '/usr/local/lib/node_modules/htmlhint'
+74 error     at Error (native)
+74 error  { [Error: EACCES, mkdir '/usr/local/lib/node_modules/htmlhint']
+74 error   errno: -13,
+74 error   code: 'EACCES',
+74 error   path: '/usr/local/lib/node_modules/htmlhint',
+74 error   fstream_type: 'Directory',
+74 error   fstream_path: '/usr/local/lib/node_modules/htmlhint',
+74 error   fstream_class: 'DirWriter',
+74 error   fstream_stack:
+74 error    [ '/usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:35:25',
+74 error      '/usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:47:53',
+74 error      'FSReqWrap.oncomplete (fs.js:95:15)' ] }
+75 error Please try running this command again as root/Administrator.
+76 verbose exit [ -13, true ]
+77 verbose unbuild lib/node_modules/htmlhint
+78 silly gentlyRm /usr/local/lib/node_modules/htmlhint is being purged from base /usr/local
+79 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/htmlhint

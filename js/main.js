@@ -1,6 +1,6 @@
+var libraries = {};
+
 $(document).on('ready', function() {
-  console.log('sanity check!');
-  var libraries = {};
 
   var Game = function(title, genre) {
     this.title = title;
@@ -12,39 +12,28 @@ $(document).on('ready', function() {
     this.games = [];
   };
 
-  // Game.prototype.render = function(game) {
-  //   $('').append('<li>' + JSON.stringify(game)+ '</li>');
-  // };
-
   GameLibrary.prototype.titleToID = function() {
-    var id = this.title.toLowerCase().replace(/ /g, "");
+    var id = this.title.toLowerCase().replace(/[^a-z0-9]/gi, "");
     return id;
   };
 
   GameLibrary.prototype.renderLibrary = function() {
     var id = this.titleToID();
-    console.log(id);
-
-    $('#title').append("<h4>" + this.title + "</h4><table class='table table-striped' id='"+ id + "-table' >" +
-        "<thead>" +
-          "<tr>" +
-            "<th>Title</th>" +
-            "<th>Genre</th>" +
-            "<th>Delete</th>" +
-          "</tr>" +
-        "</thead>" +
-        "<tbody id=" + id + ">" +
-        "</tbody>" +
-      "</table>" +
-      '<button type="button" class="btn btn-success" id="'+ id +'-btn">' +
-        '<span class="glyphicon glyphicon-plus">' + 
-        '</span> ' +
-        'Add game' + 
-      '</button>'
-      );
-
-    $('#'+id+'-btn').click(function() {
-      $('<div>' +
+    $('#title').append(
+      "<div class='lib'>" + //.lib
+        "<h2 id='" + id + "-header' class='header highlight'>" + this.title + "<button class='btn btn-danger lib-remove' data-title='"+this.title+"'>Remove library</button></h2>" +
+        "<table class='table table-striped' id='"+ id + "-table' >" +
+          "<thead>" +
+            "<tr>" +
+              "<th>Title</th>" +
+              "<th>Genre</th>" +
+              "<th>Delete</th>" +
+            "</tr>" +
+          "</thead>" +
+          "<tbody id=" + id + ">" +
+          "</tbody>" +
+        "</table>" +
+        '<div id="' + id + 'addGameForm" class="highlight">' +
           '<form class="form-inline" id="' + id + 'addGame">' +
             '<div class="form-group">' +
               '<input type="title" class="form-control newGameTitle" placeholder="Game title">' +
@@ -52,19 +41,39 @@ $(document).on('ready', function() {
             '<div class="form-group">' +
               '<input type="genre" class="form-control newGameGenre" placeholder="Genre">' +
             '</div>' +
-            '<button type="submit" class="btn btn-default addGameSubmit">Add game</button>' +
+            '<div class="form-group">' +
+              '<button type="submit" class="btn btn-default addGameSubmit">Add game</button>' +
+            '</div>' +
           '</form>' +
-        '</div>').insertBefore(('#'+id+'-btn')); //slide btn down to display add game form.
+        '</div>' +
+      '</div' +
+      '<div id="addGameErrors" class="gameError">'+
+        '<div class="alert alert-danger gameError" role="alert">'+
+            '<span class="glyphicon glyphicon-exclamation-sign gameError" aria-hidden="true"></span>' +
+            '<span class="sr-only">Error:</span>' +
+            '<span id="render-game-error"></span>' +
+          '</div>' +
+        '</div>');
 
-      $('#' + id + 'addGame').submit(function(e){
-        e.preventDefault();
-        var gameTitle = $(this).find('.newGameTitle').val();
-        var gameGenre = $(this).find('.newGameGenre').val();
-        var newGame = new Game(gameTitle, gameGenre);
-        libraries[id].addGame(newGame);
-        libraries[id].renderGame();
-        console.log(libraries);
-      });
+    var thisGameLib = this;
+
+    $('#' + id + 'addGame').submit(function(e){
+      e.preventDefault();
+      var gameTitle = $(this).find('.newGameTitle').val();
+      var gameGenre = $(this).find('.newGameGenre').val();
+      if (gameTitle !== '') {
+        if (thisGameLib.games.indexOf(gameTitle) == -1) {
+          var newGame = new Game(gameTitle, gameGenre);
+          libraries[id].addGame(newGame);
+          libraries[id].renderGame();
+          $(this)[0].reset();
+        }
+      }
+      else {
+        $('.gameError').show();
+        $('#render-game-error').html("Title can't be blank");
+        $('.gameError').fadeOut(5000);
+      }
     });
   };
 
@@ -76,58 +85,61 @@ $(document).on('ready', function() {
         "<tr>" +
           "<td>" + this.games[i].title + "</td>" +
           "<td>" + this.games[i].genre + "</td>" +
-          "<td> <span class='remove' id=" + this.games[i].title + ">Delete</span></td>" +
+          "<td> <span class='remove' data-game='" + this.games[i].title + "' data-lib='" + this.title + "'>Delete</span></td>" +
         "</tr>");
-      // if I find it, to remove it with unique id
     }
   };
 
+  $(document).on('click', '.lib-remove',function() {
+    $(this).closest('.lib').remove();
+    removeLib($(this).data('title'));
+  });
+
+  $(document).on('click', '.remove',function() {
+    $(this).closest('tr').remove();
+    libraries[$(this).data('lib')].removeGame($(this).data('game'));
+  });
 
   GameLibrary.prototype.addGame = function(game) {
     this.games.push(game);
   };
 
-  GameLibrary.prototype.removeGame = function(game) {
-    for (var i=0; this.games.length; i++) {
-      if (this.games[i] === game) {
+  function removeLib(gameLibTitle) {
+    delete libraries[gameLibTitle];
+  }
+
+  GameLibrary.prototype.removeGame = function(gameTitle) {
+    for (var i=0; i<this.games.length; i++) {
+      if (this.games[i].title === gameTitle) {
         this.games.splice(i, 1);
-      };
+      }
     }
   };
 
   $('#addLibrary').submit(function(e){
     e.preventDefault();
     var title = $('#newLibraryTitle').val();
-    var gameLib = new GameLibrary(title);
-    gameLib.renderLibrary(gameLib);
-    libraries[gameLib.titleToID()] = gameLib;
-    console.log(libraries);
+    if (title !== "") {
+      if(!(title in libraries)) {
+        var gameLib = new GameLibrary(title);
+        gameLib.renderLibrary(gameLib);
+        libraries[gameLib.titleToID()] = gameLib;
+        addLibrary.reset();
+      }
+      else {
+        $('#addLibErrors').show();
+        $('#render-error').html('already a library');
+        $('#addLibErrors').fadeOut(5000);
+
+      }
+    }
+    else {
+      $('#addLibErrors').show();
+      $('#render-error').html("Library name must not be blank");
+      $('#addLibErrors').fadeOut(5000);
+    }
   });
-
-  // var game = new Game('Travel the World on a Magic Carpet', 'RPG');
-  // var gameLibrary = new GameLibrary('Adventure Games');
-
-  // var game2 = new Game('Candy Crush', 'Puzzle');
-  // var game3 = new Game('Candy Stomp', 'Angry Puzzle');
-  // var gameLibrary2 = new GameLibrary('Puzzle Games');
-
-  // game.render(game);
-  // gameLibrary.addGame(game);
-  // gameLibrary2.addGame(game2);
-  // gameLibrary2.addGame(game3);
-
-  // gameLibrary.render(gameLibrary);
-  // gameLibrary.renderPart2(gameLibrary);
-  // gameLibrary.render(gameLibrary2);
-  // gameLibrary.renderPart2(gameLibrary2);
-
-  // gameLibrary.removeGame(game);
-  // console.log(gameLibrary);
 });
-
-// reset form
-// hide form
-// no duplicate form
-// no duplicate anything
-// delete games
-// delete libraries
+// no duplicate game
+// flash notice
+// remove lib from liberaries

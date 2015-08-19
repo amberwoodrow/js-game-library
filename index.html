@@ -15,11 +15,18 @@
             <form id="addLibrary">
               <h2>Add new game library</h2>
               <div class="form-group">
-                <label for="newLibraryTitle">New game library name</label>
+                <!-- <label for="newLibraryTitle">New game library name</label> -->
                 <input type="title" class="form-control" id="newLibraryTitle" placeholder="Game library name">
               </div>
-              <button type="submit" class="btn btn-default" id="addGameLibrary">Add library</button>
+              <button type="submit" class="btn btn-default">Add library</button>
             </form>
+            <div id="addLibErrors">
+              <div class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                <span id="render-error"></span>
+              </div>
+            </div>
           </div>
         </div>
         <div id="game-info" class="col-md-6">
